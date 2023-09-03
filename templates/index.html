@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HomePage</title>
+    <link rel="stylesheet" href="../static/style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+        <div class="container-fluid">
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <a class="navbar-brand" href="#">Notes App</a>
+          <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="#">Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">Contact</a>
+              </li>
+            </ul>
+            <form class="d-flex" role="search">
+              <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+              <button class="btn btn-outline-success" type="submit">Search</button>
+            </form>
+          </div>
+        </div>
+      </nav>
+      <div class="container">
+
+    <div class="lights">
+        <div class="back"></div>
+            <div class="main">
+            <label class="switch">
+            <input type="radio" name="value-radio">
+            <div class="button">
+                <div class="light"></div>
+                <div class="dots"></div>
+            </div>
+            </label>
+            <label class="switch1">
+            <input type="radio" checked="" name="value-radio">
+            <div class="button">
+                <div class="light"></div>
+                <div class="dots"></div>
+            </div>
+            </label>
+            <label class="switch2">
+            <input type="radio" name="value-radio">
+            <div class="button">
+                <div class="light"></div>
+                <div class="dots"></div>
+            </div>
+            </label>
+        </div>
+    </div>
+
+      <form action="/" method="post">
+        <div class="mb-3">
+          <label for="title" class="form-label">Notes Title</label>
+          <input type="text" class="form-control" id="title" aria-describedby="title" name="title">
+        </div>
+        <div class="mb-3">
+          <label for="desc" class="form-label">Description</label>
+          <textarea class="form-control" id="desc" name="description"></textarea>
+        </div>
+        <div class="mb-3 form-check">
+          <input type="checkbox" class="form-check-input" id="exampleCheck1" name="status">
+          <label class="form-check-label" for="exampleCheck1">Status</label>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </form>
+    </div>
+
+    <div class="container">
+        {% if newDoc is defined %}
+        <h2>Notes List</h2>
+        <table class="table">
+            <thead>
+                <tr>
+                <th scope="col">Sl.no</th>
+                <th scope="col">Title</th>
+                <th scope="col">Description</th>
+                <th scope="col">Status</th>
+                </tr>
+            </thead>
+            
+            <tbody>
+            {% for i in newDoc%}
+            <tr>
+                <th scope="row">{{i.id}}</th>
+                <td>{{i.title}}</td>
+                <td>{{i.description}}</td>
+                <td style="color:{% if i.status %}green{% else %}red{% endif %}">{%if i.status==True%}<h5>Completed</h5>{%else%}
+                <h5>Pending</h5>{%endif%}</td>
+            </tr>
+            {% endfor %}  
+            </tbody>
+            </table>
+        {% else %}
+        <h2>No Notes Found</h2>
+        {% endif %}
+    </div>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js" integrity="sha384-fbbOQedDUMZZ5KreZpsbe1LCZPVmfTnH7ois6mU1QK+m14rQ1l2bGBq41eYeM/fS" crossorigin="anonymous"></script>
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+<script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+<script src="app.js"></script>
+</html>
